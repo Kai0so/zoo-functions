@@ -2,8 +2,18 @@ const { species } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
 function getSpeciesByIds(...ids) {
-  const findSpeciesById = ids.map((idToFind) => species.find((animal) => animal.id === idToFind));
-  return findSpeciesById;
+  if (ids.length === 0) {
+    return [];
+  }
+  const array = [];
+  species.forEach((value) => {
+    ids.forEach((idOfSpecie) => {
+      if (value.id === idOfSpecie) {
+        array.push(value);
+      }
+    });
+  });
+  return array;
 }
 
 module.exports = getSpeciesByIds;
